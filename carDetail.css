@@ -1,0 +1,74 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fff;
+  color: #333;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+header h1#car-name {
+  font-size: 2.8rem;
+  color: #d4af37;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 3px solid #d4af37;
+  padding-bottom: 12px;
+  user-select: none;
+}
+
+.car-info img#car-image {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto 25px auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.car-info p#car-price {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #444;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.car-info h2 {
+  color: #d4af37;
+  margin-top: 35px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  user-select: none;
+  border-bottom: 2px solid #d4af37;
+  padding-bottom: 8px;
+}
+
+.car-info ul {
+  list-style-type: disc;
+  padding-left: 25px;
+  color: #555;
+  margin-top: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.car-info ul li {
+  margin-bottom: 8px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    margin: 20px 10px;
+  }
+
+  header h1#car-name {
+    font-size: 2rem;
+  }
+
+  .car-info p#car-price {
+    font-size: 1.3rem;
+  }
+}
