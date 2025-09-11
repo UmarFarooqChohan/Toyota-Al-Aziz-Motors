@@ -1,11 +1,17 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const carName = urlParams.get("car");
+    
+    console.log("Car parameter from URL:", carName); // Debug log
+    
+    // Show loading state initially
+    showLoadingState();
     const carData = {
         "passo": {
             name: "Toyota Passo",
             image: "IMG/Toyota_Passo.jpg",
-            price: "PKR 32.0 - 35.2 lacs",
+            price: "PKR 30.8 - 34.2 lacs",
             dimensions: [
                 "Overall Length: 3650 mm",
                 "Overall Width: 1665 mm",
@@ -106,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "corolla_axio": {
             "name": "Toyota Corolla Axio",
             "image": "IMG/Toyota_Corolla_Axio_11th.jpg",
-            "price": "PKR 37.4 - 65.0 lacs",
+            "price": "PKR 32.1 - 61.4 lacs",
             "dimensions": [
                 "Overall Length: 4400 mm",
                 "Overall Width: 1695 mm",
@@ -157,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "yaris": {
             name: "Toyota Yaris",
             image: "IMG/yaris.jpg",
-            price: "PKR 4,299,000",
+            price: "PKR 46.5 - 64.5 Lacs",
             dimensions: [
                 "Overall Length: 4425 mm",
                 "Overall Width: 1730 mm",
@@ -207,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "yaris_hatchback": {
             "name": "Toyota Yaris Hatchback",
             "image": "IMG/yaris-red-edited.jpg",
-            "price": "PKR 42.0 - 65.2 lacs ",
+            "price": "PKR 40.0 - 48.1 lacs ",
             "dimensions": [
                 "Overall Length: 3940 mm",
                 "Overall Width: 1695 mm",
@@ -256,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
         , "raize": {
             "name": "Toyota Raize",
             "image": "IMG/Raize.jpg",
-            "price": "PKR 48.9 - 68.6 lacs",
+            "price": "PKR 48.6 - 75.1 lacs",
             "dimensions": [
                 "Overall Length: 3995 mm",
                 "Overall Width: 1695 mm",
@@ -305,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
         , "chr": {
             "name": "Toyota C-HR",
             "image": "IMG/C-HR-(cover-photo)..jpg",
-            "price": "PKR 58.5 - 95.0 lacs",
+            "price": "PKR 55.8 - 85.3 lacs",
             "dimensions": [
                 "Overall Length: 4390 mm",
                 "Overall Width: 1795 mm",
@@ -355,7 +361,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "corolla": {
             "name": "Toyota Corolla",
             "image": "IMG/corolla.jpg",
-            "price": "PKR 59.7 - 75.5 lacs",
+            "price": "PKR 61.0 - 77.1 lacs",
             "dimensions": [
                 "Overall Length: 4620 mm",
                 "Overall Width: 1775 mm",
@@ -405,7 +411,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "surf": {
             "name": "Toyota Surf",
             "image": "IMG/surf_new.jpg",
-            "price": "PKR PKR 66.4 - 97.6 lacs ",
+            "price": "PKR PKR 59.4 - 1.11 Crore",
             "dimensions": [
                 "Overall Length: 4770 mm",
                 "Overall Width: 1875 mm",
@@ -451,10 +457,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Fuel Tank Capacity: 87 L"
             ]
         }
+        
         , "aqua": {
             "name": "Toyota Aqua",
             "image": "IMG/Aqua.jpg",
-            "price": "PKR 68.5 lacs",
+            "price": "PKR 66.4 - 70.8 lacs",
             "dimensions": [
                 "Overall Length: 4050 mm",
                 "Overall Width: 1695 mm",
@@ -504,7 +511,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "corolla_cross": {
             "name": "Toyota Corolla Cross",
             "image": "IMG/Corolla_Cross_JDM.png",
-            "price": "PKR 76.9 lacs - 1.31 crore",
+            "price": "PKR 72.4 lacs - 89.4 Crore",
             "dimensions": [
                 "Overall Length: 4460 mm",
                 "Overall Width: 1825 mm",
@@ -604,7 +611,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "hilux": {
             "name": "Toyota Hilux",
             "image": "IMG/Revo_-_PNG.png",
-            "price": "PKR 10,979,000",
+            "price": "PKR 1.14 - 1.58 Crore",
             "dimensions": [
                 "Overall Length: 5325 mm",
                 "Overall Width: 1855 mm",
@@ -703,7 +710,7 @@ document.addEventListener("DOMContentLoaded", function () {
 "prado": {
     "name": "Toyota Prado",
     "image": "IMG/PRADO.jpg",
-    "price": "PKR 6.66 - 7.56 crore ",
+    "price": "PKR 5.5 - 6 crore ",
     "dimensions": [
         "Overall Length: 4840 mm",
         "Overall Width: 1885 mm",
@@ -760,46 +767,274 @@ document.addEventListener("DOMContentLoaded", function () {
                 li.textContent = item;
                 listElement.appendChild(li);
             });}}
-// Check if the car exists in the data
-if (!carData[carName]) {
-    console.error("Car data not found for:", carName);
-    document.getElementById("car-details").innerHTML = 
-    "<p>Car details not found.</p>";
-    return;}
-console.log("Car Data Found:", carData[carName]); // Debugging log
-// Populate car details on the page
-const car = carData[carName];
-document.getElementById("car-name").innerText = car.name;
-document.getElementById("car-image").src = car.image;
-document.getElementById("car-price").innerText = car.price;
 
-// Populate dimensions
-const dimensionsList = document.getElementById("car-dimensions");
-dimensionsList.innerHTML = car.dimensions.map(dim => 
-    `<li>${dim}</li>`).join("");
+    // Check if car parameter exists
+    if (!carName) {
+        console.error("No car parameter found in URL");
+        showError("No car specified in URL");
+        return;
+    }
 
-// Populate engine details
-const engineList = document.getElementById("car-engine");
-engineList.innerHTML = car.engine.map(eng => `<li>${eng}</li>`).join("");
+    // Check if car data exists
+    if (!carData[carName]) {
+        console.error("Car data not found for:", carName);
+        showError(`Car details not found for "${carName}"`);
+        return;
+    }
 
-// Populate transmission details
-const transmissionList = document.getElementById("car-transmission");
-transmissionList.innerHTML = car.transmission.map(trans => `<li>${trans}</li>`).join("");
-
-// Populate steering details
-const steeringList = document.getElementById("car-steering");
-steeringList.innerHTML = car.steering.map(steer => `<li>${steer}</li>`).join("");
-
-// Populate suspension details
-const suspensionList = document.getElementById("car-suspension");
-suspensionList.innerHTML = car.suspension.map(sus => `<li>${sus}</li>`).join("");
-
-// Populate wheels details
-const wheelsList = document.getElementById("car-wheels");
-wheelsList.innerHTML = car.wheels.map(wheel => `<li>${wheel}</li>`).join("");
-
-// Populate fuel details
-const fuelList = document.getElementById("car-fuel");
-fuelList.innerHTML = car.fuel.map(fuel => `<li>${fuel}</li>`).join("");
-
+    // Car found - populate the page
+    console.log("Car data found:", carData[carName]);
+    populateCarDetails(carData[carName]);
+    
+    // Set up tab functionality
+    setupTabs();
+    
+    // Set up quick booking form
+    setupQuickBooking(carData[carName].name);
+    
+    // Generate related cars
+    generateRelatedCars(carName, carData);
 });
+
+// Show loading state
+function showLoadingState() {
+    const loadingState = document.getElementById('loading-state');
+    const errorState = document.getElementById('error-state');
+    const mainContent = document.getElementById('main-content');
+    
+    if (loadingState) loadingState.style.display = 'flex';
+    if (errorState) errorState.style.display = 'none';
+    if (mainContent) mainContent.style.display = 'none';
+}
+
+// Show error state
+function showError(message) {
+    const loadingState = document.getElementById('loading-state');
+    const errorState = document.getElementById('error-state');
+    const mainContent = document.getElementById('main-content');
+    
+    if (loadingState) loadingState.style.display = 'none';
+    if (mainContent) mainContent.style.display = 'none';
+    
+    if (errorState) {
+        errorState.style.display = 'flex';
+        const errorContent = errorState.querySelector('.error-content p');
+        if (errorContent) {
+            errorContent.textContent = message;
+        }
+    }
+}
+
+// Show main content
+function showMainContent() {
+    const loadingState = document.getElementById('loading-state');
+    const errorState = document.getElementById('error-state');
+    const mainContent = document.getElementById('main-content');
+    
+    if (loadingState) loadingState.style.display = 'none';
+    if (errorState) errorState.style.display = 'none';
+    if (mainContent) mainContent.style.display = 'block';
+}
+
+// Populate car details
+function populateCarDetails(car) {
+    try {
+        // Update car name
+        const carNameElement = document.getElementById("car-name");
+        if (carNameElement) {
+            carNameElement.textContent = car.name;
+            document.title = `${car.name} - Al-Aziz Motor House`;
+        }
+
+        // Update car image with error handling
+        const carImageElement = document.getElementById("car-image");
+        if (carImageElement) {
+            carImageElement.src = car.image;
+            carImageElement.alt = car.name;
+            carImageElement.onerror = function() {
+                this.src = 'https://via.placeholder.com/600x400/f0f0f0/333?text=' + encodeURIComponent(car.name);
+            };
+        }
+
+        // Update price
+        const carPriceElement = document.getElementById("car-price");
+        if (carPriceElement) {
+            carPriceElement.textContent = car.price;
+        }
+
+        // Update quick stats
+        updateQuickStats(car);
+
+        // Populate specifications
+        populateList("car-dimensions", car.dimensions);
+        populateList("car-engine", car.engine);
+        populateList("car-transmission", car.transmission);
+        populateList("car-steering", car.steering);
+        populateList("car-suspension", car.suspension);
+        populateList("car-wheels", car.wheels);
+        populateList("car-fuel", car.fuel);
+
+        // Show main content
+        showMainContent();
+        
+    } catch (error) {
+        console.error("Error populating car details:", error);
+        showError("Error loading car details");
+    }
+}
+
+// Update quick stats
+function updateQuickStats(car) {
+    const quickEngine = document.getElementById("quick-engine");
+    const quickFuel = document.getElementById("quick-fuel");
+    const quickTransmission = document.getElementById("quick-transmission");
+    const quickSeating = document.getElementById("quick-seating");
+
+    if (quickEngine && car.engine.length > 0) {
+        // Extract engine type from first engine spec
+        const engineSpec = car.engine.find(spec => spec.includes("Engine Type")) || car.engine[0];
+        quickEngine.textContent = engineSpec.replace(/^[^:]*:\s*/, '');
+    }
+
+    if (quickFuel && car.fuel.length > 0) {
+        // Extract city mileage
+        const fuelSpec = car.fuel.find(spec => spec.includes("Mileage City")) || car.fuel[0];
+        quickFuel.textContent = fuelSpec.replace(/^[^:]*:\s*/, '');
+    }
+
+    if (quickTransmission && car.transmission.length > 0) {
+        // Extract transmission type
+        const transSpec = car.transmission.find(spec => spec.includes("Transmission Type")) || car.transmission[0];
+        quickTransmission.textContent = transSpec.replace(/^[^:]*:\s*/, '');
+    }
+
+    if (quickSeating && car.dimensions.length > 0) {
+        // Extract seating capacity
+        const seatingSpec = car.dimensions.find(spec => spec.includes("Seating Capacity")) || "5 persons";
+        quickSeating.textContent = seatingSpec.replace(/^[^:]*:\s*/, '');
+    }
+}
+
+// Populate list helper function
+function populateList(id, items) {
+    const listElement = document.getElementById(id);
+    if (listElement && items) {
+        listElement.innerHTML = "";
+        items.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            listElement.appendChild(li);
+        });
+    }
+}
+
+// Setup tab functionality
+function setupTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.getAttribute('data-tab');
+            
+            // Remove active class from all buttons and panels
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabPanels.forEach(panel => panel.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding panel
+            button.classList.add('active');
+            const targetPanel = document.getElementById(targetTab + '-panel');
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+        });
+    });
+}
+
+// Setup quick booking form
+function setupQuickBooking(carName) {
+    const quickBookingForm = document.getElementById('quick-booking-form');
+    const quickCarNameInput = document.getElementById('quick-car-name');
+    const quickBookingMessage = document.getElementById('quick-booking-message');
+
+    if (quickCarNameInput) {
+        quickCarNameInput.value = carName;
+    }
+
+    if (quickBookingForm) {
+        quickBookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('quick-name').value.trim();
+            const phone = document.getElementById('quick-phone').value.trim();
+            const email = document.getElementById('quick-email').value.trim();
+
+            // Basic validation
+            if (!name || !phone || !email) {
+                showQuickBookingMessage('Please fill in all fields.', 'error');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showQuickBookingMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Phone validation
+            const phoneRegex = /^(\+92|0)?[3][0-9]{9}$/;
+            if (!phoneRegex.test(phone.replace(/\s+/g, ''))) {
+                showQuickBookingMessage('Please enter a valid Pakistani phone number.', 'error');
+                return;
+            }
+
+            // Success
+            showQuickBookingMessage(`Thank you ${name}! We'll contact you soon about the ${carName}.`, 'success');
+            quickBookingForm.reset();
+            if (quickCarNameInput) quickCarNameInput.value = carName;
+        });
+    }
+}
+
+// Show quick booking message
+function showQuickBookingMessage(message, type) {
+    const messageElement = document.getElementById('quick-booking-message');
+    if (messageElement) {
+        messageElement.textContent = message;
+        messageElement.className = 'show ' + type;
+        
+        setTimeout(() => {
+            messageElement.classList.remove('show');
+        }, 5000);
+    }
+}
+
+// Generate related cars
+function generateRelatedCars(currentCarKey, allCarsData) {
+    const relatedCarsContainer = document.getElementById('related-cars-container');
+    if (!relatedCarsContainer) return;
+
+    // Get 3 random cars excluding the current one
+    const otherCars = Object.keys(allCarsData).filter(key => key !== currentCarKey);
+    const relatedCars = otherCars.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+    relatedCarsContainer.innerHTML = '';
+
+    relatedCars.forEach(carKey => {
+        const car = allCarsData[carKey];
+        const carElement = document.createElement('div');
+        carElement.className = 'related-car-item';
+        carElement.onclick = () => window.open(`car-details.html?car=${carKey}`, '_self');
+
+        carElement.innerHTML = `
+            <img src="${car.image}" alt="${car.name}" onerror="this.src='https://via.placeholder.com/300x200/f0f0f0/333?text=${encodeURIComponent(car.name)}'">
+            <div class="related-car-info">
+                <h4>${car.name}</h4>
+                <p>${car.price}</p>
+            </div>
+        `;
+
+        relatedCarsContainer.appendChild(carElement);
+    });
+}

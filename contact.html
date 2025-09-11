@@ -1,61 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Contact Us - Al-Aziz Motor House</title>
+    <meta name="description"
+        content="Contact Al-Aziz Motor House for Toyota car inquiries, bookings, and customer support.">
+    <meta name="keywords" content="contact, Al-Aziz Motor House, Toyota dealer, Lahore, Pakistan">
     <link rel="stylesheet" href="contact.css">
 </head>
+
 <body>
 
-    <section class="contact-container">
-       <h2>About Al-Aziz Motor House</h2>
-    <p>Welcome to Al-Aziz Motor House, your trusted destination for high-quality Toyota vehicles.</p>
-    
-    
-    </div>
-        <div class="contact-wrapper">
-            <div class="contact-form">
-                <h2>Send us a message</h2>
-                <section id="contact">
-                    <h2>Contact Us</h2>
-                    <img src="IMG/F card.jpg" alt="Business Card" class="business-card-img">
-                </section>
-                
-                    <input type="text" id="name" placeholder="Your Name" required>
-                    <input type="email" id="email" placeholder="Your Email" required>
-                    <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
-                <p id="formMessage"></p>
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="IMG/lgo.jpg" alt="Al-Aziz Motor House Logo" class="logo">
+                <h1>Al-Aziz Motor House</h1>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="home.html#models">Toyota Models</a></li>
+                    <li><a href="home.html#compare">Compare Cars</a></li>
+                    <li><a href="home.html#booking">Book a Car</a></li>
+                    <li><a href="home.html#about">About Us</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-hero">
+            <div class="hero-content">
+                <h2>Contact Al-Aziz Motor House</h2>
+                <p>Get in touch with us for Toyota car inquiries, bookings, and exceptional customer service</p>
+            </div>
+        </section>
+
+        <section class="contact-container">
+            <div class="contact-wrapper">
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contact-form" action="https://formspree.io/f/myzdbazk" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="subject" name="subject" required>
+
+                                <option value="">Select Subject</option>
+                                <option value="car-inquiry">Car Inquiry</option>
+                                <option value="booking">Car Booking</option>
+                                <option value="service">Service & Support</option>
+                                <option value="financing">Financing Options</option>
+                                <option value="general">General Information</option>
+                                <option value="complaint">Complaint</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+
+                            <select id="interested-car" name="interested-car">
+                                <option value="">Interested in specific car? (Optional)</option>
+                                <option value="Toyota Passo">Toyota Passo</option>
+                                <option value="Toyota Vitz">Toyota Vitz</option>
+                                <option value="Toyota Corolla Axio">Toyota Corolla Axio</option>
+                                <option value="Toyota Yaris">Toyota Yaris</option>
+                                <option value="Toyota Yaris Hatchback">Toyota Yaris Hatchback</option>
+                                <option value="Toyota Raize">Toyota Raize</option>
+                                <option value="Toyota C-HR">Toyota C-HR</option>
+                                <option value="Toyota Corolla">Toyota Corolla</option>
+                                <option value="Toyota Surf">Toyota Surf</option>
+                                <option value="Toyota Aqua">Toyota Aqua</option>
+                                <option value="Toyota Corolla Cross">Toyota Corolla Cross</option>
+                                <option value="Toyota Hiace">Toyota Hiace</option>
+                                <option value="Toyota Hilux">Toyota Hilux</option>
+                                <option value="Toyota Camry">Toyota Camry</option>
+                                <option value="Toyota Prado">Toyota Prado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="6"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                    <div id="form-message" class="form-message"></div>
+                </div>
+
+                <div class="contact-info">
+                    <div class="business-card-section">
+                        <h3>Our Business Card</h3>
+                        <img src="IMG/F card.jpg" alt="Al-Aziz Motor House Business Card" class="business-card-img">
+                    </div>
+
+                    <div class="contact-details">
+                        <h3>Get in Touch</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">
+                                <strong>Address:</strong><br>
+                                100 Afzal Park, Sarfraz Street<br>
+                                Islampura, Lahore, Pakistan
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-text">
+                                <strong>Phone:</strong><br>
+                                <a href="tel:+923315921592">+92 331 592 1592</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-text">
+                                <strong>Email:</strong><br>
+                                <a
+                                    href="mailto:umar.farooq1592@gmail.com?subject=Car Inquiry from Al-Aziz Motor House">umar.farooq1592@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">🕒</div>
+                            <div class="contact-text">
+                                <strong>Business Hours:</strong><br>
+                                Monday - Saturday: 9:00 AM - 7:00 PM<br>
+                                Sunday: 10:00 AM - 5:00 PM
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-media">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a target="_blank" href="https://youtube.com/@umarfarooq-rb2he?si=EU9Q2wdvSRqyXH25"
+                                class="social-link youtube">
+                                <span class="social-icon">📺</span>
+                                YouTube
+                            </a>
+                            <a target="_blank" href="https://www.instagram.com/iam_umarfarooq?igsh=MWJkMWllYW5vejdmbw=="
+                                class="social-link instagram">
+                                <span class="social-icon">📷</span>
+                                Instagram
+                            </a>
+                            <a target="_blank"
+                                href="https://www.linkedin.com/in/umar-farooq-9769872b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                class="social-link linkedin">
+                                <span class="social-icon">💼</span>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <h3>Find Us on Map</h3>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54449.67648292663!2d74.31844!3d31.578947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39191b2de729f64d%3A0x46b7a1c7c6c6c6c6!2sIslampura%2C%20Lahore%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2sus!4v1640000000000!5m2!1sen!2sus"
+                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" title="Al-Aziz Motor House Location">
+                </iframe>
+            </div>
+        </section>
+
+        <section class="quick-contact">
+            <div class="quick-contact-content">
+                <h3>Need Immediate Assistance?</h3>
+                <p>For urgent inquiries or immediate support, reach out to us directly:</p>
+                <div class="quick-contact-buttons">
+                    <a href="tel:+923315921592" class="quick-btn phone-btn">
+                        📞 Call Now
+                    </a>
+                    <a href="https://wa.me/923315921592" target="_blank" class="quick-btn whatsapp-btn">
+                        💬 WhatsApp
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=umar.farooq1592@gmail.com&su=Car%20Inquiry%20-%20Urgent"
+                        target="_blank" class="quick-btn email-btn">
+                        📧 Email
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo-section">
+                <img src="IMG/lgo.jpg" alt="Al-Aziz Motor House Logo" class="footer-logo">
+                <h4>Al-Aziz Motor House</h4>
+                <p>Your trusted Toyota dealer in Pakistan</p>
             </div>
 
-            <div class="contact-details">
-                <h2>Get in Touch</h2>
-                <p><strong>📍 Address:</strong> 100 Afzal Park, Sarfraz Street Islampura Lahore</p>
-                <p><strong>📞 Phone:</strong> 03315921592</p>
-                <p><strong>📧 Email:</strong> Al-Chohans.com</p>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="home.html#models">Our Models</a></li>
+                        <li><a href="home.html#compare">Compare Cars</a></li>
+                        <li><a href="home.html#booking">Book Now</a></li>
+                    </ul>
+                </div>
 
-                <h3>Follow Us</h3>
-                <div class="social-icons">
-                    <a target="_blank" href="https://youtube.com/@umarfarooq-rb2he?si=EU9Q2wdvSRqyXH25"> You Tube</a> &nbsp; |&nbsp;
-                    &nbsp;
-                    <a target="_blank" href="https://www.instagram.com/iam_umarfarooq?igsh=MWJkMWllYW5vejdmbw=="> Instagram</a>
-                    &nbsp; |&nbsp; &nbsp;
-                    <a target="_blank"
-                        href="https://www.linkedin.com/in/umar-farooq-9769872b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
-                        Linkedin</a>
+                <div class="footer-column">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#service">Service Center</a></li>
+                        <li><a href="#warranty">Warranty</a></li>
+                    </ul>
+                </div>
 
+                <div class="footer-column">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#terms">Terms of Use</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#refund">Refund Policy</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Google Map -->
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?..." allowfullscreen></iframe>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Al-Aziz Motor House. All rights reserved. | Developed by <a
+                    href="https://www.linkedin.com/in/umar-farooq-9769872b1" target="_blank">Umar Farooq</a></p>
         </div>
-    </section>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923315921592" target="_blank" class="floating-whatsapp" title="Chat with us on WhatsApp">
+        <img src="IMG/whatsapp-873316_1280.webp" width="50px" alt="WhatsApp">
+    </a>
 
     <script src="contact.js"></script>
 </body>
+
 </html>
