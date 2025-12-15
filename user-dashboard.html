@@ -1,0 +1,1930 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Al-Aziz Motor House</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Import the exact same CSS variables and styles from home.css */
+        :root {
+            /* Brand Colors */
+            --primary-red: #dc2626;
+            --primary-red-dark: #b91c1c;
+            --primary-red-light: #ef4444;
+            --secondary-blue: #1e40af;
+            --secondary-blue-dark: #1e3a8a;
+            
+            /* Light Theme Colors */
+            --white: #ffffff;
+            --black: #000000;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Theme-aware colors */
+            --bg-primary: var(--gray-50);
+            --bg-secondary: var(--white);
+            --bg-tertiary: var(--gray-100);
+            --text-primary: var(--gray-900);
+            --text-secondary: var(--gray-700);
+            --text-tertiary: var(--gray-600);
+            --border-primary: var(--gray-200);
+            --border-secondary: var(--gray-300);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-blue), var(--secondary-blue-dark));
+            --gradient-hero: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            
+            /* Typography */
+            --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
+            
+            /* Spacing */
+            --spacing-1: 0.25rem;
+            --spacing-2: 0.5rem;
+            --spacing-3: 0.75rem;
+            --spacing-4: 1rem;
+            --spacing-5: 1.25rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-10: 2.5rem;
+            --spacing-12: 3rem;
+            --spacing-16: 4rem;
+            --spacing-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --shadow-glow: 0 0 20px rgba(220, 38, 38, 0.3);
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease-out;
+            --transition-base: 0.3s ease-out;
+            --transition-slow: 0.5s ease-out;
+        }
+
+        /* Modern CSS Reset */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header - Same as home.css */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-base);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-4) var(--spacing-6);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-full);
+            object-fit: cover;
+            border: 3px solid var(--white);
+            box-shadow: var(--shadow-lg);
+            transition: transform var(--transition-base);
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        header h1 {
+            font-weight: 800;
+            font-size: var(--font-size-2xl);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        /* Navigation */
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-8);
+            align-items: center;
+        }
+
+        .navbar a {
+            position: relative;
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            letter-spacing: 0.02em;
+            transition: all var(--transition-base);
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--radius-lg);
+        }
+
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            border-radius: var(--radius-lg);
+            z-index: -1;
+            transition: opacity var(--transition-base);
+        }
+
+        .navbar a:hover {
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .navbar a:hover::before {
+            opacity: 1;
+        }
+
+        /* Buttons - Same as home.css */
+        button {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            padding: var(--spacing-4) var(--spacing-8);
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left var(--transition-base);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+    </style>
+    <style>
+        /* Dashboard uses exact same styling as home page */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-8) clamp(var(--spacing-4), 4vw, var(--spacing-6));
+        }
+
+        /* Hero-style header */
+        .dashboard-header {
+            position: relative;
+            background: var(--gradient-hero);
+            color: var(--white);
+            text-align: center;
+            padding: var(--spacing-16) var(--spacing-6);
+            margin-bottom: var(--spacing-8);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .dashboard-header h1 {
+            position: relative;
+            z-index: 2;
+            font-size: clamp(var(--font-size-3xl), 6vw, var(--font-size-5xl));
+            font-weight: 800;
+            margin-bottom: var(--spacing-4);
+            letter-spacing: -0.02em;
+        }
+
+        .dashboard-header p {
+            position: relative;
+            z-index: 2;
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+        }
+
+        /* Car-item style cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-6);
+            margin-bottom: var(--spacing-12);
+        }
+
+        .stat-card {
+            position: relative;
+            background: var(--bg-secondary);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left var(--transition-slow);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--primary-red);
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-icon {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-4);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-number {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .stat-label {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-base);
+            font-weight: 500;
+        }
+
+        /* Dashboard Navigation - Modern button style */
+        .dashboard-nav {
+            display: flex;
+            gap: var(--spacing-4);
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-12);
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            padding: var(--spacing-4) var(--spacing-8);
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left var(--transition-base);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn.active {
+            background: var(--gradient-secondary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Section headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-8);
+        }
+
+        .section-header h2 {
+            font-size: clamp(var(--font-size-2xl), 4vw, var(--font-size-4xl));
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-4);
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -var(--spacing-2);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+        }
+
+        .section-header p {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-lg);
+        }
+
+        /* Cards using car-item style */
+        .bookings-grid, .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-8);
+            margin: var(--spacing-8) 0;
+        }
+
+        .booking-card, .favorite-card {
+            position: relative;
+            background: var(--bg-secondary);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .booking-card::before, .favorite-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left var(--transition-slow);
+        }
+
+        .booking-card:hover, .favorite-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--primary-red);
+        }
+
+        .booking-card:hover::before, .favorite-card:hover::before {
+            left: 100%;
+        }
+
+        .car-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--spacing-4);
+            transition: all var(--transition-base);
+        }
+
+        .car-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Forms using booking section style */
+        .profile-form {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-8);
+            margin: var(--spacing-8) 0;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-primary);
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-4) var(--spacing-6);
+            border: 2px solid var(--border-primary);
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-base);
+            font-family: inherit;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-md);
+            outline: none;
+            transition: all var(--transition-base);
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: var(--primary-red);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-16) var(--spacing-8);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-primary);
+        }
+
+        .empty-state-icon {
+            font-size: var(--font-size-6xl);
+            margin-bottom: var(--spacing-6);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .empty-state h3 {
+            font-size: var(--font-size-2xl);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-4);
+            font-weight: 600;
+        }
+
+        .empty-state p {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-8);
+            line-height: 1.6;
+        }
+
+        /* Status badges */
+        .status-badge {
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-confirmed { background: #d4edda; color: #155724; }
+        .status-completed { background: #d1ecf1; color: #0c5460; }
+        .status-cancelled { background: #f8d7da; color: #721c24; }
+        .status-available { background: #d4edda; color: #155724; }
+
+        /* Responsive design matching home.css */
+        @media (max-width: 968px) {
+            .dashboard-nav {
+                justify-content: center;
+            }
+            
+            .bookings-grid, .favorites-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-6);
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .dashboard-container {
+                padding: var(--spacing-8) var(--spacing-4);
+            }
+            
+            .dashboard-header {
+                padding: var(--spacing-12) var(--spacing-4);
+            }
+            
+            .dashboard-header h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .section-header h2 {
+                font-size: var(--font-size-2xl);
+            }
+        }
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--primary-red);
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-icon {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-4);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-number {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .stat-label {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-base);
+            font-weight: 500;
+        }
+
+        /* Navigation - Same style as navbar */
+        .dashboard-nav {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-6);
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-12);
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            position: relative;
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--font-size-base);
+            letter-spacing: 0.02em;
+            transition: all var(--transition-base);
+            padding: var(--spacing-3) var(--spacing-6);
+            border-radius: var(--radius-xl);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            border-radius: var(--radius-xl);
+            z-index: -1;
+            transition: opacity var(--transition-base);
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .nav-btn:hover::before,
+        .nav-btn.active::before {
+            opacity: 1;
+        }
+
+        /* Section Headers */
+        .section-header {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-8);
+            margin-bottom: var(--spacing-8);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-primary);
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: clamp(var(--font-size-2xl), 4vw, var(--font-size-4xl));
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-2);
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-lg);
+        }
+
+        /* Dashboard Sections */
+        .dashboard-section {
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .dashboard-section.active {
+            display: block;
+        }
+
+        /* Cards Grid - Same as car grid */
+        .bookings-grid, .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-8);
+            margin: var(--spacing-8) 0;
+        }
+
+        .booking-card, .favorite-card {
+            position: relative;
+            background: var(--bg-secondary);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .booking-card::before, .favorite-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left var(--transition-slow);
+        }
+
+        .booking-card:hover, .favorite-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--primary-red);
+        }
+
+        .booking-card:hover::before, .favorite-card:hover::before {
+            left: 100%;
+        }
+
+        /* Card Components */
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: var(--font-size-xl);
+            margin-right: var(--spacing-4);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .card-subtitle {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-sm);
+            margin: 0;
+        }
+
+        /* Info Items */
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-3);
+            padding: var(--spacing-2) 0;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            color: var(--primary-red);
+            margin-right: var(--spacing-3);
+            font-size: var(--font-size-base);
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .info-value {
+            color: var(--text-secondary);
+            font-size: var(--font-size-base);
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-completed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        /* Car Images - Same as home */
+        .car-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--spacing-4);
+            transition: all var(--transition-base);
+        }
+
+        .car-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Forms - Same style as booking form */
+        .profile-form {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-8);
+            margin: var(--spacing-8) 0;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-primary);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-6);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-6);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-2);
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: var(--font-size-base);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-4) var(--spacing-6);
+            border: 2px solid var(--border-primary);
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-base);
+            font-family: inherit;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            outline: none;
+            transition: all var(--transition-base);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-red);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Buttons - Same as home */
+        .btn {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            padding: var(--spacing-4) var(--spacing-8);
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left var(--transition-base);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-success {
+            background: var(--gradient-secondary);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-red);
+            border: 2px solid var(--primary-red);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-red);
+            color: var(--white);
+        }
+
+        /* Card Actions */
+        .card-actions {
+            display: flex;
+            gap: var(--spacing-3);
+            margin-top: var(--spacing-4);
+            flex-wrap: wrap;
+        }
+
+        .card-actions .btn {
+            flex: 1;
+            font-size: var(--font-size-sm);
+            padding: var(--spacing-3) var(--spacing-4);
+            min-width: 120px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-16) var(--spacing-6);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-primary);
+            margin: var(--spacing-8) 0;
+        }
+
+        .empty-state-icon {
+            font-size: var(--font-size-6xl);
+            margin-bottom: var(--spacing-6);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .empty-state h3 {
+            font-size: var(--font-size-2xl);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-4);
+            font-weight: 600;
+        }
+
+        .empty-state p {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-8);
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: var(--spacing-6);
+            right: var(--spacing-6);
+            padding: var(--spacing-4) var(--spacing-6);
+            border-radius: var(--radius-xl);
+            color: var(--white);
+            font-weight: 600;
+            z-index: var(--z-modal);
+            transform: translateX(400px);
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: var(--gradient-secondary);
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: var(--radius-full);
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design - Same breakpoints as home.css */
+        @media (max-width: 968px) {
+            .dashboard-nav {
+                flex-direction: column;
+                gap: var(--spacing-3);
+            }
+            
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .bookings-grid, .favorites-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-6);
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-actions {
+                flex-direction: column;
+            }
+            
+            .card-actions .btn {
+                flex: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .dashboard-container {
+                padding: 0 var(--spacing-4);
+            }
+            
+            .dashboard-header {
+                padding: var(--spacing-12) var(--spacing-4);
+            }
+            
+            .booking-card, .favorite-card {
+                padding: var(--spacing-4);
+            }
+            
+            .profile-form {
+                padding: var(--spacing-6);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-header h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .section-header h2 {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-4);
+            }
+            
+            .stat-card {
+                padding: var(--spacing-4);
+            }
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <!-- Header - Same style as home page -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="IMG/lgo.jpg" alt="Al-Aziz Motor House Logo" class="logo">
+                <h1>Al-Aziz Motor House</h1>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="http://localhost:3000">Home</a></li>
+                    <li><a href="http://localhost:3000/contact">Contact</a></li>
+                    <li><a href="#" id="userMenuToggle"><i class="fas fa-user"></i> <span id="userName">User</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-tachometer-alt"></i> My Dashboard</h1>
+            <p>Welcome back, <span id="welcomeName">User</span>! Manage your automotive journey with us.</p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-number" id="totalBookings">0</div>
+                <div class="stat-label">Total Bookings</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="stat-number" id="totalFavorites">0</div>
+                <div class="stat-label">Favorite Cars</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-number" id="pendingBookings">0</div>
+                <div class="stat-label">Pending Bookings</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-user-clock"></i>
+                </div>
+                <div class="stat-number" id="memberSince">2024</div>
+                <div class="stat-label">Member Since</div>
+            </div>
+        </div>
+
+        <div class="dashboard-nav">
+            <button class="nav-btn active" onclick="showSection('bookings')">
+                <i class="fas fa-calendar-check"></i> <span>My Bookings</span>
+            </button>
+            <button class="nav-btn" onclick="showSection('favorites')">
+                <i class="fas fa-heart"></i> <span>Favorite Cars</span>
+            </button>
+            <button class="nav-btn" onclick="showSection('profile')">
+                <i class="fas fa-user-edit"></i> <span>Profile Settings</span>
+            </button>
+            <button class="nav-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+            </button>
+        </div>
+
+        <!-- Bookings Section -->
+        <div id="bookings" class="dashboard-section active">
+            <div class="section-header">
+                <h2><i class="fas fa-calendar-check"></i> My Bookings</h2>
+                <p>Track and manage your car booking appointments</p>
+            </div>
+            <div id="bookingsContainer" class="bookings-grid">
+                <!-- Bookings will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Favorites Section -->
+        <div id="favorites" class="dashboard-section">
+            <div class="section-header">
+                <h2><i class="fas fa-heart"></i> Favorite Cars</h2>
+                <p>Your saved cars for quick access and comparison</p>
+            </div>
+            <div id="favoritesContainer" class="favorites-grid">
+                <!-- Favorites will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profile" class="dashboard-section">
+            <div class="section-header">
+                <h2><i class="fas fa-user-edit"></i> Profile Settings</h2>
+                <p>Update your personal information and preferences</p>
+            </div>
+            
+            <form id="profileForm" class="profile-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="profileName">
+                            <i class="fas fa-user"></i> Full Name
+                        </label>
+                        <input type="text" id="profileName" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePhone">
+                            <i class="fas fa-phone"></i> Phone Number
+                        </label>
+                        <input type="tel" id="profilePhone" name="phone" required placeholder="Enter your phone number">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profileEmail">
+                        <i class="fas fa-envelope"></i> Email Address
+                    </label>
+                    <input type="email" id="profileEmail" name="email" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profileAddress">
+                        <i class="fas fa-map-marker-alt"></i> Address
+                    </label>
+                    <textarea id="profileAddress" name="address" rows="4" placeholder="Enter your complete address"></textarea>
+                </div>
+                
+                <div class="card-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Update Profile
+                    </button>
+                    <button type="button" class="btn btn-outline" onclick="resetForm()">
+                        <i class="fas fa-undo"></i> Reset Changes
+                    </button>
+                </div>
+            </form>
+
+            <!-- Change Password Section -->
+            <form id="passwordForm" class="profile-form" style="margin-top: 2rem;">
+                <h3 style="margin-bottom: 1.5rem; color: #333;">
+                    <i class="fas fa-lock"></i> Change Password
+                </h3>
+                
+                <div class="form-group">
+                    <label for="currentPassword">
+                        <i class="fas fa-key"></i> Current Password
+                    </label>
+                    <input type="password" id="currentPassword" name="currentPassword" required placeholder="Enter current password">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="newPassword">
+                            <i class="fas fa-lock"></i> New Password
+                        </label>
+                        <input type="password" id="newPassword" name="newPassword" required placeholder="Enter new password" minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            <i class="fas fa-lock"></i> Confirm Password
+                        </label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm new password">
+                    </div>
+                </div>
+                
+                <div class="card-actions">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-key"></i> Change Password
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <script>
+        const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api';
+        let currentUser = null;
+
+        // Check authentication
+        function checkAuth() {
+            const token = localStorage.getItem('userToken');
+            const userData = localStorage.getItem('userData');
+            
+            if (!token || !userData) {
+                const loginUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000/login.html' : '/login.html';
+                window.location.href = loginUrl + '?return=' + encodeURIComponent(window.location.href);
+                return false;
+            }
+            
+            currentUser = JSON.parse(userData);
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('welcomeName').textContent = currentUser.name;
+            
+            return true;
+        }
+
+        function getAuthHeaders() {
+            const token = localStorage.getItem('userToken');
+            return {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            };
+        }
+
+        function showSection(sectionName) {
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update sections
+            document.querySelectorAll('.dashboard-section').forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionName).classList.add('active');
+            
+            // Load section data
+            switch(sectionName) {
+                case 'bookings':
+                    loadBookings();
+                    break;
+                case 'favorites':
+                    loadFavorites();
+                    break;
+                case 'profile':
+                    loadProfile();
+                    break;
+            }
+        }
+
+        async function loadBookings() {
+            try {
+                const response = await fetch(`${API_BASE}/booking/user/my-bookings`, {
+                    headers: getAuthHeaders()
+                });
+                
+                if (response.ok) {
+                    const bookings = await response.json();
+                    displayBookings(bookings);
+                } else {
+                    console.error('Failed to load bookings');
+                }
+            } catch (error) {
+                console.error('Error loading bookings:', error);
+            }
+        }
+
+        function displayBookings(bookings) {
+            const container = document.getElementById('bookingsContainer');
+            
+            // Update stats
+            document.getElementById('totalBookings').textContent = bookings.length;
+            document.getElementById('pendingBookings').textContent = bookings.filter(b => b.status === 'pending').length;
+            
+            if (bookings.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <i class="fas fa-calendar-times"></i>
+                        </div>
+                        <h3>No Bookings Yet</h3>
+                        <p>You haven't made any bookings yet. Start exploring our amazing collection of Toyota vehicles and book your dream car today!</p>
+                        <a href="http://localhost:3000" class="btn btn-primary">
+                            <i class="fas fa-car"></i> Browse Cars
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = bookings.map(booking => `
+                <div class="booking-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">${booking.carId?.name || booking.selectedCar}</h3>
+                            <p class="card-subtitle">Booking ID: ${booking.bookingId || booking._id.slice(-6)}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Appointment Date</div>
+                            <div class="info-value">${formatDate(booking.preferredDate)}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Time</div>
+                            <div class="info-value">${booking.preferredTime}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Status</div>
+                            <div class="info-value">
+                                <span class="status-badge status-${booking.status}">
+                                    <i class="fas fa-${getStatusIcon(booking.status)}"></i>
+                                    ${booking.status.toUpperCase()}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${booking.customerMessage ? `
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="info-content">
+                                <div class="info-label">Message</div>
+                                <div class="info-value">${booking.customerMessage}</div>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="card-actions">
+                        ${booking.status === 'pending' ? `
+                            <button class="btn btn-danger" onclick="cancelBooking('${booking._id}')">
+                                <i class="fas fa-times"></i> Cancel Booking
+                            </button>
+                        ` : ''}
+                        ${booking.carId?.key ? `
+                            <button class="btn btn-outline" onclick="viewCar('${booking.carId.key}')">
+                                <i class="fas fa-eye"></i> View Car
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function cancelBooking(bookingId) {
+            if (!confirm('Are you sure you want to cancel this booking?')) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/booking/${bookingId}/cancel`, {
+                    method: 'PATCH',
+                    headers: getAuthHeaders(),
+                    body: JSON.stringify({ reason: 'Cancelled by customer' })
+                });
+                
+                if (response.ok) {
+                    alert('Booking cancelled successfully');
+                    loadBookings();
+                } else {
+                    alert('Failed to cancel booking');
+                }
+            } catch (error) {
+                console.error('Error cancelling booking:', error);
+                alert('Error cancelling booking');
+            }
+        }
+
+        async function loadFavorites() {
+            try {
+                const response = await fetch(`${API_BASE}/auth/favorites`, {
+                    headers: getAuthHeaders()
+                });
+                
+                if (response.ok) {
+                    const favorites = await response.json();
+                    displayFavorites(favorites);
+                } else {
+                    console.error('Failed to load favorites');
+                }
+            } catch (error) {
+                console.error('Error loading favorites:', error);
+            }
+        }
+
+        function displayFavorites(favorites) {
+            const container = document.getElementById('favoritesContainer');
+            
+            // Update stats
+            document.getElementById('totalFavorites').textContent = favorites.length;
+            
+            if (favorites.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <i class="fas fa-heart-broken"></i>
+                        </div>
+                        <h3>No Favorite Cars</h3>
+                        <p>You haven't added any cars to your favorites yet. Start building your dream car collection by exploring our amazing Toyota lineup!</p>
+                        <a href="http://localhost:3000" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Browse Collection
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = favorites.map(car => `
+                <div class="favorite-card">
+                    <img src="${car.image}" alt="${car.name}" class="car-image" loading="lazy">
+                    
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">${car.name}</h3>
+                            <p class="card-subtitle">Toyota Premium Collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-tag"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Price Range</div>
+                            <div class="info-value">${car.price}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Availability</div>
+                            <div class="info-value">
+                                <span class="status-badge status-${car.availability}">
+                                    <i class="fas fa-${car.availability === 'available' ? 'check' : 'times'}"></i>
+                                    ${car.availability.toUpperCase()}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-actions">
+                        <button class="btn btn-primary" onclick="viewCar('${car.key}')">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                        <button class="btn btn-success" onclick="bookCar('${car.key}')">
+                            <i class="fas fa-calendar-plus"></i> Book Now
+                        </button>
+                        <button class="btn btn-danger" onclick="removeFavorite('${car._id}')">
+                            <i class="fas fa-heart-broken"></i> Remove
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function viewCar(carKey) {
+            window.location.href = `http://localhost:3000/car-details/${carKey}`;
+        }
+
+        async function removeFavorite(carId) {
+            try {
+                const response = await fetch(`${API_BASE}/auth/favorites/${carId}`, {
+                    method: 'DELETE',
+                    headers: getAuthHeaders()
+                });
+                
+                if (response.ok) {
+                    loadFavorites();
+                } else {
+                    alert('Failed to remove from favorites');
+                }
+            } catch (error) {
+                console.error('Error removing favorite:', error);
+            }
+        }
+
+        async function loadProfile() {
+            try {
+                const response = await fetch(`${API_BASE}/auth/profile`, {
+                    headers: getAuthHeaders()
+                });
+                
+                if (response.ok) {
+                    const profile = await response.json();
+                    document.getElementById('profileName').value = profile.name;
+                    document.getElementById('profileEmail').value = profile.email;
+                    document.getElementById('profilePhone').value = profile.phone;
+                    document.getElementById('profileAddress').value = profile.address?.street || '';
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+
+        // Profile form handler
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const profileData = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                address: {
+                    street: formData.get('address')
+                }
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/auth/profile`, {
+                    method: 'PUT',
+                    headers: getAuthHeaders(),
+                    body: JSON.stringify(profileData)
+                });
+                
+                if (response.ok) {
+                    const updatedUser = await response.json();
+                    localStorage.setItem('userData', JSON.stringify(updatedUser));
+                    currentUser = updatedUser;
+                    document.getElementById('userName').textContent = updatedUser.name;
+                    document.getElementById('welcomeName').textContent = updatedUser.name;
+                    alert('Profile updated successfully!');
+                } else {
+                    alert('Failed to update profile');
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Error updating profile');
+            }
+        });
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('userToken');
+                localStorage.removeItem('userData');
+                showNotification('Logged out successfully!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'http://localhost:3000';
+                }, 1000);
+            }
+        }
+
+        // Enhanced helper functions
+        function getStatusIcon(status) {
+            const icons = {
+                'pending': 'clock',
+                'confirmed': 'check-circle',
+                'completed': 'flag-checkered',
+                'cancelled': 'times-circle'
+            };
+            return icons[status] || 'info-circle';
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        function bookCar(carKey) {
+            window.location.href = `http://localhost:3000/car-details/${carKey}#booking`;
+        }
+
+        function resetForm() {
+            if (confirm('Are you sure you want to reset all changes?')) {
+                loadProfile();
+                showNotification('Form reset successfully!', 'success');
+            }
+        }
+
+        // Enhanced notification system
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            
+            container.appendChild(notification);
+            
+            // Trigger animation
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Remove after 4 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => container.removeChild(notification), 400);
+            }, 4000);
+        }
+
+        // Enhanced form handlers
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="loading-spinner"></div> Updating...';
+            
+            const formData = new FormData(e.target);
+            const profileData = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                address: {
+                    street: formData.get('address')
+                }
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/auth/profile`, {
+                    method: 'PUT',
+                    headers: getAuthHeaders(),
+                    body: JSON.stringify(profileData)
+                });
+                
+                if (response.ok) {
+                    const updatedUser = await response.json();
+                    localStorage.setItem('userData', JSON.stringify(updatedUser));
+                    currentUser = updatedUser;
+                    document.getElementById('userName').textContent = updatedUser.name;
+                    document.getElementById('welcomeName').textContent = updatedUser.name;
+                    showNotification('Profile updated successfully!', 'success');
+                } else {
+                    showNotification('Failed to update profile. Please try again.', 'error');
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                showNotification('Network error. Please check your connection.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+
+        // Password change handler
+        document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (newPassword !== confirmPassword) {
+                showNotification('Passwords do not match!', 'error');
+                return;
+            }
+            
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="loading-spinner"></div> Changing...';
+            
+            const formData = new FormData(e.target);
+            const passwordData = {
+                currentPassword: formData.get('currentPassword'),
+                newPassword: formData.get('newPassword')
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/auth/change-password`, {
+                    method: 'POST',
+                    headers: getAuthHeaders(),
+                    body: JSON.stringify(passwordData)
+                });
+                
+                if (response.ok) {
+                    showNotification('Password changed successfully!', 'success');
+                    e.target.reset();
+                } else {
+                    const data = await response.json();
+                    showNotification(data.message || 'Failed to change password', 'error');
+                }
+            } catch (error) {
+                console.error('Error changing password:', error);
+                showNotification('Network error. Please try again.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+
+        // Enhanced loading with member since calculation
+        async function loadUserData() {
+            try {
+                const response = await fetch(`${API_BASE}/auth/profile`, {
+                    headers: getAuthHeaders()
+                });
+                
+                if (response.ok) {
+                    const user = await response.json();
+                    currentUser = user;
+                    populateProfile(user);
+                    
+                    // Calculate member since
+                    const memberSince = new Date(user.createdAt || Date.now()).getFullYear();
+                    document.getElementById('memberSince').textContent = memberSince;
+                    
+                    // Load other data
+                    await Promise.all([loadFavorites(), loadBookings()]);
+                }
+            } catch (error) {
+                console.error('Error loading user data:', error);
+                showNotification('Error loading user data', 'error');
+            }
+        }
+
+        // Initialize with enhanced loading
+        if (checkAuth()) {
+            loadUserData();
+        }
+    </script>
+</body>
+</html>""

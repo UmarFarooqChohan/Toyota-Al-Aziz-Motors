@@ -1,0 +1,224 @@
+/* Global Theme System for Al-Aziz Motor House */
+
+/* Base Theme Variables */
+:root {
+  /* Brand Colors - Always consistent */
+  --primary-red: #dc2626;
+  --primary-red-dark: #b91c1c;
+  --primary-red-light: #ef4444;
+  --secondary-blue: #1e40af;
+  --secondary-blue-dark: #1e3a8a;
+  --accent-green: #16a34a;
+  --accent-orange: #ea580c;
+  
+  /* Light Theme Colors (Default) */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  
+  /* Theme-aware semantic colors */
+  --bg-primary: var(--color-gray-50);
+  --bg-secondary: var(--color-white);
+  --bg-tertiary: var(--color-gray-100);
+  --bg-accent: var(--color-gray-200);
+  
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-700);
+  --text-tertiary: var(--color-gray-600);
+  --text-muted: var(--color-gray-500);
+  
+  --border-primary: var(--color-gray-200);
+  --border-secondary: var(--color-gray-300);
+  --border-accent: var(--color-gray-400);
+  
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-strong: rgba(0, 0, 0, 0.2);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-blue), var(--secondary-blue-dark));
+  --gradient-hero: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease-out;
+  --transition-base: 0.3s ease-out;
+  --transition-slow: 0.5s ease-out;
+}
+
+/* Dark Theme Override */
+[data-theme="dark"] {
+  /* Invert gray scale for dark theme */
+  --color-gray-50: #1f2937;
+  --color-gray-100: #374151;
+  --color-gray-200: #4b5563;
+  --color-gray-300: #6b7280;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #d1d5db;
+  --color-gray-600: #e5e7eb;
+  --color-gray-700: #f3f4f6;
+  --color-gray-800: #f9fafb;
+  --color-gray-900: #ffffff;
+  --color-white: #1f2937;
+  --color-black: #ffffff;
+  
+  /* Dark theme semantic colors */
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  --bg-accent: #4b5563;
+  
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --text-tertiary: #d1d5db;
+  --text-muted: #9ca3af;
+  
+  --border-primary: #374151;
+  --border-secondary: #4b5563;
+  --border-accent: #6b7280;
+  
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-color-strong: rgba(0, 0, 0, 0.5);
+  
+  /* Adjust gradients for dark theme */
+  --gradient-hero: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+}
+
+/* Global theme transition */
+* {
+  transition: background-color var(--transition-base), 
+              color var(--transition-base), 
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+/* Theme-aware component styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Form elements */
+input, 
+textarea, 
+select {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-primary);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+/* Placeholder text */
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Cards and containers */
+.card,
+.container,
+.section {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-primary);
+}
+
+/* Buttons - maintain brand colors but adjust for theme */
+button {
+  transition: all var(--transition-base);
+}
+
+/* Links */
+a {
+  color: var(--primary-red);
+}
+
+a:hover {
+  color: var(--primary-red-light);
+}
+
+/* Scrollbar theming */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-red);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--primary-red);
+  color: var(--color-white);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--primary-red);
+  outline-offset: 2px;
+}
+
+/* Dark theme specific adjustments */
+[data-theme="dark"] {
+  /* Adjust image brightness slightly */
+  img {
+    filter: brightness(0.9);
+  }
+  
+  /* Adjust shadows for dark theme */
+  .shadow,
+  .card,
+  .modal {
+    box-shadow: 0 10px 15px -3px var(--shadow-color), 
+                0 4px 6px -4px var(--shadow-color);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border-primary: var(--color-gray-900);
+    --border-secondary: var(--color-gray-800);
+  }
+  
+  [data-theme="dark"] {
+    --border-primary: var(--color-white);
+    --border-secondary: var(--color-gray-100);
+  }
+}

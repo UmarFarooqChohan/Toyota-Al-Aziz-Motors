@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Login - Al-Aziz Motor House</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: min(400px, 95vw);
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.75rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .login-type-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .login-type-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #667eea;
+            background: transparent;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .login-type-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .login-type-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .auth-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message {
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #3c3;
+        }
+
+        .back-link {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .guest-option {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .guest-btn {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .guest-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="logo">
+            <h1><i class="fas fa-car"></i> Al-Aziz Motor House</h1>
+            <p>Your Trusted Toyota Partner</p>
+        </div>
+
+        <div class="auth-tabs">
+            <button class="tab-btn active" onclick="showTab('login', this)">Login</button>
+            <button class="tab-btn" onclick="showTab('register', this)">Register</button>
+        </div>
+
+        <div id="errorMessage" class="message error-message"></div>
+        <div id="successMessage" class="message success-message"></div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form active">
+            <!-- Login Type Selector -->
+            <div class="login-type-selector">
+                <button type="button" class="login-type-btn active" onclick="setLoginType('user')">
+                    <i class="fas fa-user"></i> User Login
+                </button>
+                <button type="button" class="login-type-btn" onclick="setLoginType('admin')">
+                    <i class="fas fa-user-shield"></i> Admin Login
+                </button>
+            </div>
+
+            <div class="form-group">
+                <label for="loginEmail">Email Address</label>
+                <input type="email" id="loginEmail" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="password" required>
+            </div>
+
+            <button type="submit" class="auth-btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i> <span id="loginBtnText">User Login</span>
+            </button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" class="auth-form">
+            <div class="form-group">
+                <label for="registerName">Full Name</label>
+                <input type="text" id="registerName" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="registerEmail">Email Address</label>
+                <input type="email" id="registerEmail" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPhone">Phone Number</label>
+                <input type="tel" id="registerPhone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" name="password" required minlength="6">
+            </div>
+
+            <button type="submit" class="auth-btn" id="registerBtn">
+                <i class="fas fa-user-plus"></i> Create Account
+            </button>
+        </form>
+
+        <div class="guest-option">
+            <p style="margin-bottom: 0.5rem; color: #666; font-size: 0.9rem;">Just browsing?</p>
+            <button class="guest-btn" onclick="continueAsGuest()">
+                <i class="fas fa-eye"></i> Continue as Guest
+            </button>
+        </div>
+
+        <div class="back-link">
+            <a href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back to Website</a>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api';
+        let currentTab = 'login';
+        let loginType = 'user'; // Default to user login
+
+        function showTab(tab, eventElement) {
+            currentTab = tab;
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (eventElement) {
+                eventElement.classList.add('active');
+            }
+            
+            // Update forms
+            document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+            const targetForm = document.getElementById(tab + 'Form');
+            if (targetForm) {
+                targetForm.classList.add('active');
+            }
+            
+            // Clear messages
+            hideMessages();
+        }
+
+        function setLoginType(type) {
+            loginType = type;
+            
+            // Update login type buttons
+            document.querySelectorAll('.login-type-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update login button text
+            const loginBtnText = document.getElementById('loginBtnText');
+            if (type === 'admin') {
+                loginBtnText.textContent = 'Admin Login';
+            } else {
+                loginBtnText.textContent = 'User Login';
+            }
+            
+            // Clear messages
+            hideMessages();
+        }
+
+        function hideMessages() {
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            if (errorMsg) errorMsg.style.display = 'none';
+            if (successMsg) successMsg.style.display = 'none';
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            if (errorDiv) {
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            if (successDiv) {
+                successDiv.textContent = message;
+                successDiv.style.display = 'block';
+            }
+        }
+
+        function continueAsGuest() {
+            const defaultUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '/';
+            const returnUrl = new URLSearchParams(window.location.search).get('return') || defaultUrl;
+            window.location.href = returnUrl;
+        }
+
+        // Check if already logged in (but don't auto-redirect immediately)
+        // This check runs after DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if already logged in
+            const userToken = localStorage.getItem('userToken');
+            const adminToken = localStorage.getItem('adminToken');
+            const userData = localStorage.getItem('userData');
+            const adminUser = localStorage.getItem('adminUser');
+            
+            // Check for admin login
+            if (adminToken && adminUser) {
+                const user = JSON.parse(adminUser);
+                if (user.role === 'admin') {
+                    window.location.href = 'admin-dashboard.html';
+                    return;
+                }
+            }
+            
+            // Check for user login
+            if (userToken && userData) {
+                const defaultUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '/';
+                const returnUrl = new URLSearchParams(window.location.search).get('return') || defaultUrl;
+                // Only redirect if we have a valid return URL
+                if (returnUrl && returnUrl !== window.location.href) {
+                    window.location.href = returnUrl;
+                    return;
+                }
+            }
+            
+            // Ensure login form is visible on load
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.classList.add('active');
+            }
+
+            // Login Form Handler
+            const loginFormElement = document.getElementById('loginForm');
+            if (loginFormElement) {
+                loginFormElement.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    hideMessages();
+                    
+                    const email = document.getElementById('loginEmail').value;
+                    const password = document.getElementById('loginPassword').value;
+                    const loginBtn = document.getElementById('loginBtn');
+
+                    if (!loginBtn) return;
+
+                    loginBtn.disabled = true;
+                    const loadingText = loginType === 'admin' ? 'Admin Login...' : 'Logging in...';
+                    loginBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${loadingText}`;
+
+                    try {
+                        console.log('Attempting login with email:', email);
+                        const response = await fetch(`${API_BASE}/auth/login`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ email, password })
+                        });
+
+                        console.log('Response status:', response.status);
+                        console.log('Response ok:', response.ok);
+
+                        // Try to parse JSON response
+                        let data;
+                        try {
+                            data = await response.json();
+                            console.log('Response data:', data);
+                        } catch (jsonError) {
+                            console.error('Error parsing JSON:', jsonError);
+                            const text = await response.text();
+                            console.error('Response text:', text);
+                            showError('Server error: Invalid response format');
+                            return;
+                        }
+
+                        if (response.ok) {
+                            // Handle different login types
+                            if (loginType === 'admin') {
+                                // Check if user is admin
+                                if (data.user.role === 'admin') {
+                                    // Store admin data
+                                    localStorage.setItem('adminToken', data.token);
+                                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+                                    
+                                    showSuccess('Admin login successful! Redirecting...');
+                                    
+                                    setTimeout(() => {
+                                        window.location.href = 'admin-dashboard.html';
+                                    }, 1000);
+                                } else {
+                                    showError('Access denied. Admin privileges required.');
+                                    return;
+                                }
+                            } else {
+                                // Regular user login
+                                localStorage.setItem('userToken', data.token);
+                                localStorage.setItem('userData', JSON.stringify(data.user));
+                                
+                                console.log('User data stored:', data.user);
+                                
+                                showSuccess('Login successful! Redirecting...');
+                                
+                                // Get return URL
+                                const defaultUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '/';
+                                const returnUrl = new URLSearchParams(window.location.search).get('return') || defaultUrl;
+                                
+                                // Build redirect URL with auth params
+                                const url = new URL(returnUrl);
+                                url.searchParams.set('token', data.token);
+                                url.searchParams.set('userData', encodeURIComponent(JSON.stringify(data.user)));
+                                
+                                console.log('Redirecting to:', url.toString());
+                                
+                                setTimeout(() => {
+                                    window.location.href = url.toString();
+                                }, 1000);
+                            }
+                        } else {
+                            // Handle different error types
+                            if (data.errors && Array.isArray(data.errors)) {
+                                showError(data.errors.map(err => err.msg || err.message).join(', '));
+                            } else {
+                                showError(data.message || 'Login failed. Please check your credentials.');
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Login error:', error);
+                        showError('Network error. Please check if the server is running and try again.');
+                    } finally {
+                        loginBtn.disabled = false;
+                        const btnText = loginType === 'admin' ? 'Admin Login' : 'User Login';
+                        loginBtn.innerHTML = `<i class="fas fa-sign-in-alt"></i> <span id="loginBtnText">${btnText}</span>`;
+                    }
+                });
+            }
+
+            // Register Form Handler
+            const registerFormElement = document.getElementById('registerForm');
+            if (registerFormElement) {
+                registerFormElement.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    hideMessages();
+                    
+                    const name = document.getElementById('registerName').value;
+                    const email = document.getElementById('registerEmail').value;
+                    const phone = document.getElementById('registerPhone').value;
+                    const password = document.getElementById('registerPassword').value;
+                    const registerBtn = document.getElementById('registerBtn');
+
+                    if (!registerBtn) return;
+
+                    registerBtn.disabled = true;
+                    registerBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+
+                    try {
+                        const response = await fetch(`${API_BASE}/auth/register`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ name, email, phone, password })
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok) {
+                            // Store user data
+                            localStorage.setItem('userToken', data.token);
+                            localStorage.setItem('userData', JSON.stringify(data.user));
+                            
+                            showSuccess('Account created successfully! Redirecting...');
+                            
+                            // Redirect to previous page or React app home
+                            const defaultUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '/';
+                            const returnUrl = new URLSearchParams(window.location.search).get('return') || defaultUrl;
+                            setTimeout(() => {
+                                window.location.href = returnUrl;
+                            }, 1000);
+                        } else {
+                            if (data.errors) {
+                                showError(data.errors.map(err => err.msg).join(', '));
+                            } else {
+                                showError(data.message || 'Registration failed');
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Registration error:', error);
+                        showError('Network error. Please try again.');
+                    } finally {
+                        registerBtn.disabled = false;
+                        registerBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
