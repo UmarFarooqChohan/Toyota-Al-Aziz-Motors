@@ -346,49 +346,49 @@ const Home = () => {
               </div>
             </div>
             
-            <div className="team-member">
-              <img src="/IMG/Muhammad Abdur Rafay waqar.JPG" alt="Abdur Rafay" className="founder-img" />
-              <h3>Abdur Rafay</h3>
-              <p className="team-role">Co-Founder</p>
-              <div className="social-links">
-                <a target="_blank" rel="noopener noreferrer" href="">YouTube</a> |
-                <a target="_blank" rel="noopener noreferrer" href="">Instagram</a> |
-                <a target="_blank" rel="noopener noreferrer" href="">LinkedIn</a>
-              </div>
-            </div>
-            
-            <div className="team-member">
-              <img src="/IMG/afrasiab.jpeg" alt="Afrasiab" className="founder-img" />
-              <h3>Afrasiab</h3>
-              <p className="team-role">Partner</p>
-               <div className="social-links">
-                <a target="_blank" rel="noopener noreferrer" href="">YouTube</a> |
-                <a target="_blank" rel="noopener noreferrer" href="">Instagram</a> |
-                <a target="_blank" rel="noopener noreferrer" href="">LinkedIn</a>
-              </div>
-            </div>
-            
-            <div className="team-member">
-              <img src="/IMG/Founder.JPG" alt="Kashif" className="founder-img" />
-              <h3>Kashif</h3>
-              <p className="team-role">Partner</p>
-               <div className="social-links">
-                <a target="" rel="noopener noreferrer" href="">YouTube</a> |
-                <a target="" rel="noopener noreferrer" href="">Instagram</a> |
-                <a target="" rel="noopener noreferrer" href="">LinkedIn</a>
-              </div>
-            </div>
-            
-            <div className="team-member">
-              <img src="/IMG/talha.jpg" alt="Talha" className="founder-img" />
-              <h3>Talha</h3>
-              <p className="team-role">Partner</p>
-               <div className="social-links">
-                <a target="_blank" rel="noopener noreferrer" href="">YouTube</a> |
-                <a target="_blank" rel="noopener noreferrer" href="">Instagram</a> |
-                <a target="_blank" rel="noopener noreferrer" href="">LinkedIn</a>
-              </div>
-            </div>
+           <div className="team-member">
+  <img src="/IMG/Muhammad Abdur Rafay waqar.JPG" alt="Abdur Rafay" className="founder-img" />
+  <h3>Abdur Rafay</h3>
+  <p className="team-role">Co-Founder</p>
+  <div className="social-links">
+    <span className="disabled-link">YouTube</span> |
+    <span className="disabled-link">Instagram</span> |
+    <span className="disabled-link">LinkedIn</span>
+  </div>
+</div>
+
+<div className="team-member">
+  <img src="/IMG/afrasiab.jpeg" alt="Afrasiab" className="founder-img" />
+  <h3>Afrasiab</h3>
+  <p className="team-role">Partner</p>
+  <div className="social-links">
+    <span className="disabled-link">YouTube</span> |
+    <span className="disabled-link">Instagram</span> |
+    <span className="disabled-link">LinkedIn</span>
+  </div>
+</div>
+
+<div className="team-member">
+  <img src="/IMG/Founder.JPG" alt="Kashif" className="founder-img" />
+  <h3>Kashif</h3>
+  <p className="team-role">Partner</p>
+  <div className="social-links">
+    <span className="disabled-link">YouTube</span> |
+    <span className="disabled-link">Instagram</span> |
+    <span className="disabled-link">LinkedIn</span>
+  </div>
+</div>
+
+<div className="team-member">
+  <img src="/IMG/talha.jpg" alt="Talha" className="founder-img" />
+  <h3>Talha</h3>
+  <p className="team-role">Partner</p>
+  <div className="social-links">
+    <span className="disabled-link">YouTube</span> |
+    <span className="disabled-link">Instagram</span> |
+    <span className="disabled-link">LinkedIn</span>
+  </div>
+</div>
 
             <div className="team-member">
               <img src="/IMG/Salman.jpeg" alt="salman" className="founder-img" />
