@@ -19,7 +19,7 @@
       "dest": "/server/server.js"
     },
     {
-      "src": "/(login|admin-dashboard|user-dashboard).*",
+      "src": "/(login|admin-dashboard|user-dashboard)(/.*)?",
       "dest": "/server/server.js"
     },
     {
