@@ -105,22 +105,25 @@ const CarDetails = () => {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('dimensions');
 
-  useEffect(() => {
-    fetchCarDetails();
-  }, [carKey]);
+ useEffect(() => {
+  fetchCarDetails();
+}, [fetchCarDetails]);
 
-  const fetchCarDetails = async () => {
-    try {
-      setLoading(true);
-      const response = await carService.getCarByKey(carKey);
-      setCar(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching car details:', error);
-      setError('Car details not found');
-      setLoading(false);
-    }
-  };
+
+  const fetchCarDetails = useCallback(async () => {
+  try {
+    setLoading(true);
+    const response = await carService.getCarByKey(carKey);
+    setCar(response.data);
+    setError(null);
+  } catch (error) {
+    console.error('Error fetching car details:', error);
+    setError('Car details not found');
+  } finally {
+    setLoading(false);
+  }
+}, [carKey]);
+
 
   if (loading) {
     return (
