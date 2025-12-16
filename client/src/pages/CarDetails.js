@@ -41,7 +41,7 @@ const QuickBookingForm = ({ carName }) => {
       console.log('📤 Submitting booking form:', formData);
       const response = await bookingService.submitBooking(formData);
       console.log('✅ Booking response:', response.data);
-      
+
       setMessage({ text: response.data.message || `Thank you ${formData.customerName}! We'll contact you soon about the ${carName}.`, type: 'success' });
       setFormData({
         customerName: '',
@@ -53,10 +53,10 @@ const QuickBookingForm = ({ carName }) => {
     } catch (error) {
       console.error('❌ Booking submission error:', error);
       console.error('Error response:', error.response?.data);
-      
-      const errorMessage = error.response?.data?.message || 
-                          error.message || 
-                          'Sorry, there was an error. Please try again.';
+
+      const errorMessage = error.response?.data?.message ||
+        error.message ||
+        'Sorry, there was an error. Please try again.';
       setMessage({ text: errorMessage, type: 'error' });
     }
   };
@@ -65,26 +65,26 @@ const QuickBookingForm = ({ carName }) => {
     <div className="quick-booking">
       <h4>Quick Booking Form</h4>
       <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          placeholder="Your Name" 
+        <input
+          type="text"
+          placeholder="Your Name"
           required
           value={formData.customerName}
-          onChange={(e) => setFormData({...formData, customerName: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
         />
-        <input 
-          type="tel" 
-          placeholder="Your Phone" 
+        <input
+          type="tel"
+          placeholder="Your Phone"
           required
           value={formData.customerPhone}
-          onChange={(e) => setFormData({...formData, customerPhone: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, customerPhone: e.target.value })}
         />
-        <input 
-          type="email" 
-          placeholder="Your Email" 
+        <input
+          type="email"
+          placeholder="Your Email"
           required
           value={formData.customerEmail}
-          onChange={(e) => setFormData({...formData, customerEmail: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, customerEmail: e.target.value })}
         />
         <button type="submit" className="btn btn-primary btn-full">Request Information</button>
       </form>
@@ -97,33 +97,35 @@ const QuickBookingForm = ({ carName }) => {
   );
 };
 
+
 const CarDetails = () => {
   const { carKey } = useParams();
   const navigate = useNavigate();
+
   const [car, setCar] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('dimensions');
 
- useEffect(() => {
-  fetchCarDetails();
-}, [fetchCarDetails]);
+  
+   const fetchCarDetails = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await carService.getCarByKey(carKey);
+      setCar(response.data);
+      setError(null);
+    } catch (error) {
+      console.error('Error fetching car details:', error);
+      setError('Car details not found');
+    } finally {
+      setLoading(false);
+    }
+  }, [carKey]);
 
-
-  const fetchCarDetails = useCallback(async () => {
-  try {
-    setLoading(true);
-    const response = await carService.getCarByKey(carKey);
-    setCar(response.data);
-    setError(null);
-  } catch (error) {
-    console.error('Error fetching car details:', error);
-    setError('Car details not found');
-  } finally {
-    setLoading(false);
-  }
-}, [carKey]);
-
+  // ✅ USE AFTER DEFINITION
+  useEffect(() => {
+    fetchCarDetails();
+  }, [fetchCarDetails]);
 
   if (loading) {
     return (
@@ -157,7 +159,7 @@ const CarDetails = () => {
   return (
     <div>
       <Header />
-      
+
       <main>
         <div id="main-content">
           <section className="car-header">
@@ -169,7 +171,7 @@ const CarDetails = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="car-quick-info">
               <div className="quick-stats">
                 <div className="stat-item">
@@ -201,7 +203,7 @@ const CarDetails = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="action-buttons">
                 <a href="/#booking" className="btn btn-primary btn-large">Book This Car</a>
                 <a href="/contact" className="btn btn-secondary btn-large">Get More Info</a>
@@ -320,9 +322,9 @@ const CarDetails = () => {
               <div className="contact-info">
                 <h3>Interested in this car?</h3>
                 <p>Contact us today for pricing, availability, and financing options.</p>
-        
+
               </div>
-              
+
               <QuickBookingForm carName={car.name} />
             </div>
           </section>
